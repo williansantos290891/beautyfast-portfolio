@@ -1,0 +1,11 @@
+{
+  "synthetic": true,
+  "provenance": "Fabricated portfolio illustration; NOT measured production outcomes.",
+  "n": 19,
+  "completed_runs": 18,
+  "structured_outputs": 16,
+  "reviewer_accepted_drafts": 15,
+  "median_baseline_seconds": 420,
+  "median_assisted_seconds": 180,
+  "caveat": "n=19 is exploratory even for real data. These invented values provide no empirical evidence."
+}
