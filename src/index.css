@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 72 13% 6%;
+  --foreground: 40 47% 92%;
+  --card: 72 13% 11%;
+  --border: 72 13% 24%;
+  --primary: 40 47% 92%;
+  --primary-foreground: 72 13% 12%;
+  --secondary: 30 30% 58%;
+  --secondary-foreground: 72 13% 10%;
+  --muted: 72 13% 18%;
+  --muted-foreground: 60 11% 64%;
+  --accent: 60 11% 48%;
+  --ring: 30 30% 58%;
+  --shadow-card: 0 8px 28px hsl(72 13% 3% / 0.25);
+}
+* { border-color: hsl(var(--border)); }
+body { margin: 0; background: hsl(var(--background)); color: hsl(var(--foreground)); font-family: 'Poppins', sans-serif; letter-spacing: 0; }
+button, select { font: inherit; }
+select { background: hsl(var(--card)); color: hsl(var(--foreground)); border: 1px solid hsl(var(--border)); border-radius: 6px; padding: 8px; max-width: 100%; }
+select:focus-visible { outline: 2px solid hsl(var(--ring)); outline-offset: 3px; }
+.glass { background: hsl(var(--card) / 0.8); backdrop-filter: blur(12px); border: 1px solid hsl(var(--border)); box-shadow: var(--shadow-card); }
+.face-zone { cursor: pointer; transition: opacity 180ms ease, stroke-width 180ms ease; }
+.face-zone:focus-visible { outline: none; stroke: hsl(var(--primary)); stroke-width: 4px; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
