@@ -28,19 +28,6 @@ def generate_leads(count=300, seed=42):
         for i in range(count)
     ]
 
-def illustrative_metrics():
-    return {
-        'synthetic': True,
-        'provenance': 'Fabricated portfolio illustration; NOT measured production outcomes.',
-        'n': 19,
-        'completed_runs': 18,
-        'structured_outputs': 16,
-        'reviewer_accepted_drafts': 15,
-        'median_baseline_seconds': 420,
-        'median_assisted_seconds': 180,
-        'caveat': 'n=19 is exploratory even for real data. These invented values provide no empirical evidence.',
-    }
-
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--count', type=int, default=300)
@@ -53,9 +40,6 @@ def main():
     target = ROOT / 'src/data/synthetic-leads.json'
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(json.dumps(leads, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
-    metrics = ROOT / 'docs/illustrative-copilot-results.json'
-    metrics.parent.mkdir(parents=True, exist_ok=True)
-    metrics.write_text(json.dumps(illustrative_metrics(), ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     print(f'Generated {len(leads)} explicitly fictional leads (seed={args.seed}).')
 
 if __name__ == '__main__':
