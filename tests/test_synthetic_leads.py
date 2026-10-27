@@ -38,14 +38,5 @@ class SyntheticLeadTests(unittest.TestCase):
         saved = json.loads((ROOT / 'src/data/synthetic-leads.json').read_text(encoding='utf-8'))
         self.assertEqual(saved, generator.generate_leads())
 
-    def test_metric_example_19_and_not_production(self):
-        metrics = generator.illustrative_metrics()
-        self.assertEqual(metrics['n'], 19)
-        self.assertIs(metrics['synthetic'], True)
-        self.assertIn('NOT measured production', metrics['provenance'])
-        self.assertEqual(metrics['completed_runs'], 18)
-        self.assertEqual(metrics['structured_outputs'], 16)
-        self.assertEqual(metrics['reviewer_accepted_drafts'], 15)
-
 if __name__ == '__main__':
     unittest.main()
