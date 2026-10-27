@@ -7,7 +7,6 @@ from urllib.request import Request, urlopen
 ROOT = Path(__file__).resolve().parents[1]
 FILES = (
     'src/data/synthetic-leads.json',
-    'docs/illustrative-copilot-results.json',
     'docs/screenshots/report.png',
     'docs/screenshots/crm.png',
 )
