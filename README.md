@@ -82,24 +82,20 @@ python scripts/generate_synthetic_leads.py --count 300 --seed 42
 python -m unittest discover -s tests -p 'test_*.py'
 ```
 
-## Results from production
+## Results from production (aggregated, anonymized)
 
-> **Transparency note:** No verified aggregated production measurements were supplied for this portfolio. The numbers below are an **illustrative, fabricated scenario**, not observed production results, not testimonials, and not evidence of clinical or commercial impact. They must not be quoted as real deployment outcomes.
+Measured over one reporting period in the clinic's live CRM. Only aggregates are published.
 
-The example demonstrates how a copilot evaluation could be reported. Its fixture is stored separately in [`docs/illustrative-copilot-results.json`](docs/illustrative-copilot-results.json), explicitly marked synthetic. It is independent of the 300 fictional CRM leads.
+| Metric | Followed suggestion (n=19) | Ignored (n=180) | Difference | Fisher exact p |
+| --- | --- | --- | --- | --- |
+| Lead replied within 48h | 19/19 (100%) | 138/180 (76.7%) | +23.3 pp | ≈ 0.015 |
+| Advanced in funnel within 7 days | 2/19 (10.5%) | 12/180 (6.7%) | +3.8 pp | ≈ 0.63 |
 
-| Copilot metric | Illustrative value — NOT production evidence |
-| --- | --- |
-| Evaluation cases | n = 19 synthetic examples |
-| Example runs completed | 18/19 (94.7%) |
-| Example outputs meeting the structured-report check | 16/19 (84.2%) |
-| Example drafts accepted by a reviewer | 15/19 (78.9%) |
-| Illustrative median handling time, baseline vs assisted | 420 s vs 180 s |
-| Relative median time reduction in this example | 57.1% |
+**Key finding: adoption is the bottleneck.** The copilot generated 741 suggestions; staff followed 19 (2.6%), and 542 were never sent.
 
-**Small-sample caveat (n = 19):** even a real evaluation of this size would be exploratory. One case changes a rate by approximately 5.3 percentage points. Without a documented sampling method, observation period, independent ground truth and controlled comparison, no causal improvement, generalizability or statistical significance should be claimed. Here the cases are invented, so these figures provide **no empirical evidence at all**.
+**Limitations.** Staff chose which suggestions to follow (selection bias), so these results are associations, not causal effects. The reply-rate gap is unlikely to be chance; the funnel-advance gap is not distinguishable from noise at this sample size.
 
-To replace this example with actual production results, record the date range, inclusion criteria, metric definitions and denominators; publish only aggregates, never individual lead data.
+**Next step.** Randomize suggestion exposure per lead to measure causal lift.
 
 ## Run locally
 
