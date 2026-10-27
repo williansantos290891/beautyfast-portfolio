@@ -1,3 +1,4 @@
+import syntheticLeads from '../data/synthetic-leads.json';
 export const FAIXAS_ETARIAS = ['18-25', '26-35', '36-45', '46-55', '56-65', '65+'];
 export const ZONAS = [
   { id: 'ZONA_TESTA', nome: 'Testa', descricao: 'Linhas que aparecem ao levantar as sobrancelhas.', path: 'M64 108 C82 68 118 52 150 52 C182 52 218 68 236 108 C200 92 100 92 64 108Z' },
@@ -17,11 +18,8 @@ export const STATUS_LABEL: Record<Status, string> = {
   em_tratamento: 'Em acompanhamento', concluido: 'Concluído', perdido: 'Perdido', arquivado: 'Arquivado'
 };
 export interface DemoLead { id: string; nome: string; interesse: string; status: Status }
-export const DEMO_LEADS: DemoLead[] = [
-  { id: 'demo-01', nome: 'Pessoa fictícia 01', interesse: 'Testa e olhos', status: 'novo' },
-  { id: 'demo-02', nome: 'Pessoa fictícia 02', interesse: 'Contorno do rosto', status: 'contatado' },
-  { id: 'demo-03', nome: 'Pessoa fictícia 03', interesse: 'Pele em geral', status: 'agendado' },
-  { id: 'demo-04', nome: 'Pessoa fictícia 04', interesse: 'Lábios', status: 'compareceu' },
-  { id: 'demo-05', nome: 'Pessoa fictícia 05', interesse: 'Maçãs do rosto', status: 'em_tratamento' },
-  { id: 'demo-06', nome: 'Pessoa fictícia 06', interesse: 'Testa', status: 'concluido' }
-];
+export const DEMO_LEADS: DemoLead[] = syntheticLeads.flatMap(lead => {
+  const status = STATUS.find(value => value === lead.status);
+  if (!status || lead.synthetic !== true || !lead.nome.startsWith('Fictício: ')) return [];
+  return [{ id: lead.id, nome: lead.nome, interesse: lead.interesse, status }];
+});
